@@ -1,7 +1,7 @@
-import React from "react";
+import { useState } from "react";
 import { Country } from "../../App";
+import FilterBar from "../FilterBar";
 import CountryCard from "../CountryCard";
-import ContinentNavBar from "../ContinentNavBar";
 import "./style.scss";
 
 type ContentProps = {
@@ -9,21 +9,39 @@ type ContentProps = {
 };
 
 const Content = ({ countries }: ContentProps) => {
-  const list = countries.map((country: Country, index) => {
-    console.log("country:", country);
-    return (
-      <CountryCard
-        name={country.name}
-        flag={country.flag}
-        alpha2Code={country.alpha2Code}
-        capital={country.capital}
-      />
-    );
-  });
+  const [regionFilter, setRegionFilter] = useState("");
+
+  const unFilteredCountries = countries;
+
+  const filteredCountries = countries.filter(
+    (country) => country.region === regionFilter
+  );
+
+  const countryListToDisplay = !!regionFilter.length
+    ? filteredCountries
+    : unFilteredCountries;
+
   return (
     <div className="content-container">
-      <ContinentNavBar />
-      <div className="content-container__cards">{list}</div>
+      {console.log(regionFilter)}
+      <FilterBar
+        onClick={(continent) =>
+          continent === "World"
+            ? setRegionFilter("")
+            : setRegionFilter(continent)
+        }
+      />
+      <div className="content-container__cards">
+        {countryListToDisplay.map((country: Country) => (
+          <CountryCard
+            name={country.name}
+            flag={country.flag}
+            alpha2Code={country.alpha2Code}
+            capital={country.capital}
+            key={country.alpha2Code}
+          />
+        ))}
+      </div>
     </div>
   );
 };

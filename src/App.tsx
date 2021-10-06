@@ -10,6 +10,7 @@ export type Country = {
   flag: string;
   alpha2Code: string;
   capital: string;
+  region?: string;
 };
 
 function App() {
@@ -22,11 +23,11 @@ function App() {
   const [countries, setCountries] = useState<Country[]>([]);
   useEffect(() => {
     getCountries();
-  });
+  }, []);
 
   return (
     <div className="app-container">
-      <Header name={"Counry-app"} />
+      <Header />
       <Content countries={countries} />
       <Footer />
     </div>
