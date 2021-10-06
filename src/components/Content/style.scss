@@ -1,0 +1,16 @@
+.content-container {
+  // flex: 2;
+  width: 1140px;
+  margin: auto;
+
+  &__cards {
+    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 25px;
+  }
+
+  ul {
+    list-style: none;
+  }
+}

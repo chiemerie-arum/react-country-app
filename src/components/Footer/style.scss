@@ -1,0 +1,12 @@
+.footer-container{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-height: 100px;
+    background: linear-gradient(
+        90deg,#f4c01a,#0d6632);
+
+    // flex: 1;
+}

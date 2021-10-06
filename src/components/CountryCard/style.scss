@@ -1,0 +1,48 @@
+.country__container {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 160px;
+    height: 167px;
+    padding: 3px;
+    border: 1px solid #ddd;
+    border-radius: 0.3rem;
+    margin-bottom: 10px;
+}
+.country__container:hover {
+    transform: scale(1.01);
+    box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2), 0 1px 15px 0 rgba(0, 0, 0, 0.19);
+}
+.country__name {
+    font-size: 1.3em;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+.country__alpha {
+    font-size: 0.7em;
+    color: #999;
+}
+.country__capital {
+    font-size: 1em;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 4px;
+    margin-left: 0;
+    margin-top: 0;
+    text-align: left;
+}
+.country__summary {
+    width: 100%;
+    display: block;
+    justify-content: flex-start;
+}
+.country__flag {
+    width: 100%;
+    height: 120px;
+    border-radius: 0.5rem;
+    object-fit: cover;
+}
