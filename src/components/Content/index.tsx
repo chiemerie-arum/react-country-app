@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Country } from "../../App";
+import { Country } from "../../pages/CountryList";
 import FilterBar from "../FilterBar";
 import CountryCard from "../CountryCard";
 import "./style.scss";
@@ -10,6 +11,11 @@ type ContentProps = {
 
 const Content = ({ countries }: ContentProps) => {
   const [regionFilter, setRegionFilter] = useState("");
+
+  const linkStyles = {
+    color: "black",
+    textDecoration: "none",
+  };
 
   const unFilteredCountries = countries;
 
@@ -33,13 +39,15 @@ const Content = ({ countries }: ContentProps) => {
       />
       <div className="content-container__cards">
         {countryListToDisplay.map((country: Country) => (
-          <CountryCard
-            name={country.name}
-            flag={country.flag}
-            alpha2Code={country.alpha2Code}
-            capital={country.capital}
-            key={country.alpha2Code}
-          />
+          <Link style={linkStyles} to={`/country/${country.alpha2Code}`}>
+            <CountryCard
+              name={country.name}
+              flag={country.flag}
+              alpha2Code={country.alpha2Code}
+              capital={country.capital}
+              key={country.alpha2Code}
+            />
+          </Link>
         ))}
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Country } from "../../App";
+import { Country } from "../../pages/CountryList";
 import "./style.scss";
 
 const CountryCard = (country: Country) => (

@@ -1,37 +1,45 @@
 import "./App.scss";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Content from "./components/Content";
-import CountryService from "./utils/services/CountryService";
-import { useState, useEffect } from "react";
-
-export type Country = {
-  name: string;
-  flag: string;
-  alpha2Code: string;
-  capital: string;
-  region?: string;
-};
+import { CountryList } from "./pages/CountryList";
+import { CountryDetails } from "./pages/CountryDetails";
+import { Test } from "./components/Test";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
-  const getCountries = async () => {
-    await CountryService.getCountries().then((response) => {
-      setCountries(response.data);
-    });
-  };
-
-  const [countries, setCountries] = useState<Country[]>([]);
-  useEffect(() => {
-    getCountries();
-  }, []);
-
   return (
     <div className="app-container">
       <Header />
-      <Content countries={countries} />
+
+      <Router>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/test" component={Test} />
+          <Route path="/countries" component={CountryList} />
+          <Route path="/country/:id" component={CountryDetails} />
+        </Switch>
+      </Router>
       <Footer />
     </div>
   );
 }
 
 export default App;
+
+const Home = () => {
+  const linkStyles = {
+    color: "grey",
+    textDecoration: "none",
+  };
+  return (
+    <div>
+      <h1>
+        Welcome to the Country App! Click
+        <Link style={linkStyles} to="/countries">
+          <span> here </span>
+        </Link>
+        to see the list of countries.
+      </h1>
+    </div>
+  );
+};
